@@ -16,10 +16,10 @@ public class Services {
 
     ArrayList<Integer> notas = new ArrayList();
     ArrayList<Alumno> alumno = new ArrayList();
-    Scanner leer = new Scanner(System.in);
+    Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    boolean confirmacion;
 
     public void crearAlumno() {
-        String validacion;
         do {
             Alumno estudiante = new Alumno();
             System.out.println("Ingrese el nombre del alumno");
@@ -34,28 +34,24 @@ public class Services {
             alumno.add(estudiante);
 
             System.out.println("desea ingresar otro estudiante?");
-            validacion = leer.next();
 
-        } while ("si".equalsIgnoreCase(validacion));
+        } while ("si".equalsIgnoreCase(leer.next()));
     }
 
     public void notaFinal() {
         System.out.println("Ingrese el nombre del alumno que desea obtener el promedio");
-        String nombre = leer.next();
-        alumno.forEach(alumno -> {
-            if (alumno.getNombre().equalsIgnoreCase(nombre)) {
-                System.out.println(promedio(alumno.getNotas()));
-            }else{
-                System.out.println("Estudiante no encontrado");
+
+        alumno.forEach((Alumno i) -> {
+            if (i.getNombre().contentEquals(leer.next())) {
+                confirmacion = false;
+                System.out.println((i.getNotas().stream().map(nota -> nota).reduce(0, Integer::sum)) / notas.size());
             }
         });
+
+        if (confirmacion) {
+            System.out.println("no se encontró el estudiante");
+        }
+
     }
 
-    public double promedio(ArrayList<Integer> notas) {
-        int suma = 0;
-        for (Integer nota : notas) {
-            suma += nota;
-        }
-        return suma / notas.size();
-    }
 }

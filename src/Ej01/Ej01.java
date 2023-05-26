@@ -21,14 +21,12 @@ public class Ej01 {
     public static void main(String[] args) {
         ArrayList<String> lista = new ArrayList();
         Scanner leer = new Scanner(System.in);
-        String i;
 
         do {
             System.out.println("Ingrese una nueva raza de perro");
             lista.add(leer.next());
             System.out.println("Desea agragar otra raza?");
-            i = leer.next();
-        } while ("Si".equalsIgnoreCase(i));
+        } while ("Si".equalsIgnoreCase(leer.next()));
 
         System.out.println(lista);
 

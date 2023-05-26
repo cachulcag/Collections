@@ -35,7 +35,7 @@ public class Services {
     ArrayList<Pelicula> peliculas = new ArrayList();
 
     public void crearPelicula() {
-        String validacion;
+
         do {
             Pelicula pelicula = new Pelicula();
             System.out.println("Ingrese el título de la película");
@@ -48,9 +48,8 @@ public class Services {
             peliculas.add(pelicula);
 
             System.out.println("DESEA GUARDAR UNA NUEVA PELICULA?");
-            validacion = leer.next();
 
-        } while ("si".equalsIgnoreCase(validacion));
+        } while ("si".equalsIgnoreCase(leer.next()));
 
     }
 

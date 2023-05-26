@@ -8,8 +8,8 @@ la lista ordenada.
 package Ej02;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -22,32 +22,28 @@ public class Ej02 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArrayList<String> lista = new ArrayList();
+        Collection<String> lista = new ArrayList();
         Scanner leer = new Scanner(System.in);
-        String i;
 
         do {
             System.out.println("Ingrese una nueva raza de perro");
             lista.add(leer.next());
             System.out.println("Desea agragar otra raza?");
-            i = leer.next();
-        } while ("Si".equalsIgnoreCase(i));
+        } while ("Si".equalsIgnoreCase(leer.next()));
 
-        System.out.println(lista);
+        lista.forEach((i) -> System.out.println(i));
 
-        System.out.println("Ingrese la raza de perro que desea buscar");
+        System.out.println("Ingrese la raza de perro que desea eliminar");
         String raza = leer.next();
-        
-        Iterator it = lista.iterator();
-        while(it.hasNext()){
-            if(it.next().equals(raza)){
-                it.remove();
-                System.out.println("La raza fue removida");
-            }
+        if (lista.contains(raza)) {
+            lista.remove(raza);
+            System.out.println("La raza fue removida");
+        } else {
+            System.out.println("Raza no encontrada");
         }
-        Collections.sort(lista);
-        System.out.println(lista);
-        
+
+        lista.stream().sorted();
+        lista.forEach((i) -> System.out.println(i));
     }
 
 }

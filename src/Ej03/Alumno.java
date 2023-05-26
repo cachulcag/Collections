@@ -15,13 +15,6 @@ public class Alumno {
     private String Nombre;
     private ArrayList<Integer> notas;
 
-    public Alumno() {
-    }
-
-    public Alumno(ArrayList<Integer> notas) {
-        this.notas = notas;
-    }
-
     public String getNombre() {
         return Nombre;
     }
