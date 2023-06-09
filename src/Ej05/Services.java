@@ -19,15 +19,13 @@ public class Services {
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
     public void ingresarPais() {
-        String validacion;
         do {
             System.out.println("Ingrese un país (no pueden repetirse)");
             conjuntoPaises.add(leer.next());
 
-            System.out.println("DESEA AGREGAR OTRO PAÍS?");
-            validacion = leer.next();
+            System.out.println("DESEA AGREGAR OTRO PAÍS?"); 
 
-        } while ("si".equalsIgnoreCase(validacion));
+        } while ("si".equalsIgnoreCase(leer.next()));
 
         conjuntoPaises.forEach((paises) -> {
             System.out.println(paises);
@@ -35,20 +33,11 @@ public class Services {
     }
 
     public void buscarPaises() {
-        Iterator<String> it = conjuntoPaises.iterator();
         System.out.println("Ingrese el país que desea eliminar");
-        String pais = leer.next();
-        boolean i = false;
-        while (it.hasNext()) {
-            if (it.next().equalsIgnoreCase(pais)) {
-                it.remove();
-                i=true;
-            } 
-        }
-        
-        if(!i)
-            System.out.println("País no encontrado");
-        
+        if(conjuntoPaises.removeIf(n -> (n.contentEquals(leer.next())))){
+            System.out.println("País eliminado");
+        }else
+            System.out.println("País no encontrado");        
         conjuntoPaises.forEach((e) -> System.out.println(e));
 
     }
